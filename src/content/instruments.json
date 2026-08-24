@@ -1,0 +1,56 @@
+[
+  {
+    "slug": "guitarra-criolla-fonseca",
+    "name": "Guitarra criolla Fonseca",
+    "category": "cuerdas",
+    "tagline": "Tapa de cedro maciza, ideal para iniciarte",
+    "priceFrom": 145000,
+    "currency": "ARS",
+    "featured": true
+  },
+  {
+    "slug": "bajo-electrico-jazz",
+    "name": "Bajo eléctrico Jazz Bass",
+    "category": "cuerdas",
+    "tagline": "Cuerpo de aliso, mástil de arce",
+    "priceFrom": 420000,
+    "currency": "ARS",
+    "featured": true
+  },
+  {
+    "slug": "bateria-acustica-5-cuerpos",
+    "name": "Batería acústica 5 cuerpos",
+    "category": "percusion",
+    "tagline": "Set completo con platillos y herrajes",
+    "priceFrom": 980000,
+    "currency": "ARS",
+    "featured": true
+  },
+  {
+    "slug": "saxo-alto-yamaha",
+    "name": "Saxo alto",
+    "category": "vientos",
+    "tagline": "Lacado dorado, boquilla incluida",
+    "priceFrom": 610000,
+    "currency": "ARS",
+    "featured": true
+  },
+  {
+    "slug": "piano-digital-88-teclas",
+    "name": "Piano digital 88 teclas",
+    "category": "teclados",
+    "tagline": "Acción de martillo, sonido de gran cola",
+    "priceFrom": 530000,
+    "currency": "ARS",
+    "featured": false
+  },
+  {
+    "slug": "interfaz-audio-2-canales",
+    "name": "Interfaz de audio 2 canales",
+    "category": "audio",
+    "tagline": "Grabá con calidad de estudio en casa",
+    "priceFrom": 165000,
+    "currency": "ARS",
+    "featured": false
+  }
+]

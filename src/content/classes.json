@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "guitarra-iniciacion",
+    "instrument": "Guitarra",
+    "level": "Iniciación",
+    "modality": "Grupal",
+    "teacher": "Prof. a definir",
+    "schedule": "Lunes y miércoles 18:00"
+  },
+  {
+    "slug": "piano-individual",
+    "instrument": "Piano",
+    "level": "Intermedio",
+    "modality": "Individual",
+    "teacher": "Prof. a definir",
+    "schedule": "A coordinar"
+  },
+  {
+    "slug": "bateria-iniciacion",
+    "instrument": "Batería",
+    "level": "Iniciación",
+    "modality": "Individual",
+    "teacher": "Prof. a definir",
+    "schedule": "Martes y jueves 17:00"
+  },
+  {
+    "slug": "canto-todos-los-niveles",
+    "instrument": "Canto",
+    "level": "Iniciación",
+    "modality": "Individual",
+    "teacher": "Prof. a definir",
+    "schedule": "A coordinar"
+  }
+]
