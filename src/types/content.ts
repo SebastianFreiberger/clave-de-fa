@@ -33,3 +33,23 @@ export interface ContactInfo {
   instagram: string;
   hours: { day: string; hours: string }[];
 }
+
+export type GalleryCategory =
+  | "cuerdas"
+  | "vientos"
+  | "percusion"
+  | "audio"
+  | "academia";
+
+export interface GalleryItem {
+  slug: string;
+  caption: string;
+  category: GalleryCategory;
+  size: "small" | "medium" | "large";
+}
+
+export interface Testimonial {
+  name: string;
+  role: string;
+  quote: string;
+}

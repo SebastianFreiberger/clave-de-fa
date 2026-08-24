@@ -6,6 +6,7 @@ import { motion, AnimatePresence } from "motion/react";
 const LINKS = [
   { href: "#instrumentos", label: "Instrumentos" },
   { href: "#academia", label: "Academia" },
+  { href: "#galeria", label: "Galería" },
   { href: "#nosotros", label: "Nosotros" },
   { href: "#contacto", label: "Contacto" },
 ];

@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "salon-guitarras",
+    "caption": "Pared de guitarras y bajos",
+    "category": "cuerdas",
+    "size": "large"
+  },
+  {
+    "slug": "sala-de-ensayo",
+    "caption": "Sala de ensayo para clases individuales",
+    "category": "academia",
+    "size": "small"
+  },
+  {
+    "slug": "sector-percusion",
+    "caption": "Sector de percusión y baterías",
+    "category": "percusion",
+    "size": "small"
+  },
+  {
+    "slug": "clase-grupal",
+    "caption": "Clase grupal de iniciación",
+    "category": "academia",
+    "size": "medium"
+  },
+  {
+    "slug": "vientos-vitrina",
+    "caption": "Vitrina de vientos",
+    "category": "vientos",
+    "size": "small"
+  },
+  {
+    "slug": "estudio-grabacion",
+    "caption": "Estudio de grabación",
+    "category": "audio",
+    "size": "medium"
+  }
+]

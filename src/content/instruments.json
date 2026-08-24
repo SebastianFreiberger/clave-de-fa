@@ -9,6 +9,15 @@
     "featured": true
   },
   {
+    "slug": "guitarra-electrica-stratocaster",
+    "name": "Guitarra eléctrica estilo Stratocaster",
+    "category": "cuerdas",
+    "tagline": "Tres single coil, mástil de arce",
+    "priceFrom": 380000,
+    "currency": "ARS",
+    "featured": true
+  },
+  {
     "slug": "bajo-electrico-jazz",
     "name": "Bajo eléctrico Jazz Bass",
     "category": "cuerdas",
@@ -16,6 +25,15 @@
     "priceFrom": 420000,
     "currency": "ARS",
     "featured": true
+  },
+  {
+    "slug": "violin-4-4",
+    "name": "Violín 4/4",
+    "category": "cuerdas",
+    "tagline": "Con estuche, arco y resina incluidos",
+    "priceFrom": 210000,
+    "currency": "ARS",
+    "featured": false
   },
   {
     "slug": "bateria-acustica-5-cuerpos",
@@ -27,7 +45,16 @@
     "featured": true
   },
   {
-    "slug": "saxo-alto-yamaha",
+    "slug": "congas-profesionales",
+    "name": "Congas profesionales",
+    "category": "percusion",
+    "tagline": "Cuero natural, parche afinable",
+    "priceFrom": 265000,
+    "currency": "ARS",
+    "featured": false
+  },
+  {
+    "slug": "saxo-alto",
     "name": "Saxo alto",
     "category": "vientos",
     "tagline": "Lacado dorado, boquilla incluida",
@@ -36,11 +63,38 @@
     "featured": true
   },
   {
+    "slug": "trompeta-sib",
+    "name": "Trompeta en Sib",
+    "category": "vientos",
+    "tagline": "Acabado plateado, incluye sordina",
+    "priceFrom": 340000,
+    "currency": "ARS",
+    "featured": false
+  },
+  {
+    "slug": "clarinete-sib",
+    "name": "Clarinete en Sib",
+    "category": "vientos",
+    "tagline": "Cuerpo de ébano, ideal para academia",
+    "priceFrom": 290000,
+    "currency": "ARS",
+    "featured": false
+  },
+  {
     "slug": "piano-digital-88-teclas",
     "name": "Piano digital 88 teclas",
     "category": "teclados",
     "tagline": "Acción de martillo, sonido de gran cola",
     "priceFrom": 530000,
+    "currency": "ARS",
+    "featured": true
+  },
+  {
+    "slug": "sintetizador-61-teclas",
+    "name": "Sintetizador 61 teclas",
+    "category": "teclados",
+    "tagline": "Múltiples voces y secuenciador integrado",
+    "priceFrom": 470000,
     "currency": "ARS",
     "featured": false
   },
@@ -50,6 +104,24 @@
     "category": "audio",
     "tagline": "Grabá con calidad de estudio en casa",
     "priceFrom": 165000,
+    "currency": "ARS",
+    "featured": true
+  },
+  {
+    "slug": "microfono-condensador",
+    "name": "Micrófono condensador de estudio",
+    "category": "audio",
+    "tagline": "Ideal para voces y grabación acústica",
+    "priceFrom": 130000,
+    "currency": "ARS",
+    "featured": false
+  },
+  {
+    "slug": "monitores-de-estudio",
+    "name": "Par de monitores de estudio",
+    "category": "audio",
+    "tagline": "Respuesta plana para mezcla y producción",
+    "priceFrom": 390000,
     "currency": "ARS",
     "featured": false
   }
