@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { motion } from "motion/react";
 import type { Instrument, InstrumentCategory } from "@/types/content";
 
@@ -75,6 +76,17 @@ export function InstrumentsGrid({ instruments }: { instruments: Instrument[] }) 
             className="group flex h-full flex-col justify-between bg-ink p-8 transition-colors hover:bg-ink-soft"
           >
             <div>
+              {item.imageUrl && (
+                <div className="relative mb-5 aspect-video overflow-hidden rounded-lg">
+                  <Image
+                    src={item.imageUrl}
+                    alt={item.name}
+                    fill
+                    sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
               <span className="text-xs tracking-[0.2em] text-brass uppercase">
                 {CATEGORY_LABEL[item.category]}
               </span>

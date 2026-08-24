@@ -13,6 +13,7 @@ export interface Instrument {
   priceFrom: number;
   currency: "ARS" | "USD";
   featured: boolean;
+  imageUrl?: string;
 }
 
 export interface MusicClass {
@@ -46,6 +47,7 @@ export interface GalleryItem {
   caption: string;
   category: GalleryCategory;
   size: "small" | "medium" | "large";
+  imageUrl?: string;
 }
 
 export interface Testimonial {

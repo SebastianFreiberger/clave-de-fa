@@ -1,7 +1,7 @@
 import { getContactInfo } from "@/lib/data";
 
-export function Footer() {
-  const contact = getContactInfo();
+export async function Footer() {
+  const contact = await getContactInfo();
 
   return (
     <footer className="border-t border-ink-line px-6 py-14 md:px-10">

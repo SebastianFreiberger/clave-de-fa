@@ -2,8 +2,8 @@ import { getClasses } from "@/lib/data";
 import { Reveal } from "@/components/ui/Reveal";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
-export function Academy() {
-  const classes = getClasses();
+export async function Academy() {
+  const classes = await getClasses();
 
   return (
     <section id="academia" className="border-t border-ink-line px-6 py-28 md:px-10">

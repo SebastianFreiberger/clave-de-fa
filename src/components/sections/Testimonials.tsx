@@ -1,8 +1,8 @@
 import { getTestimonials } from "@/lib/data";
 import { Reveal } from "@/components/ui/Reveal";
 
-export function Testimonials() {
-  const testimonials = getTestimonials();
+export async function Testimonials() {
+  const testimonials = await getTestimonials();
 
   return (
     <section className="border-t border-ink-line px-6 py-28 md:px-10">

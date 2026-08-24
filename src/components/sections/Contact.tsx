@@ -2,8 +2,8 @@ import { getContactInfo } from "@/lib/data";
 import { Reveal } from "@/components/ui/Reveal";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
-export function Contact() {
-  const contact = getContactInfo();
+export async function Contact() {
+  const contact = await getContactInfo();
   const whatsappHref = `https://wa.me/${contact.whatsapp}`;
 
   return (

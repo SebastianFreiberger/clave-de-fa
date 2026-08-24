@@ -18,6 +18,8 @@ const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
 });
 
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "Clave de Fa — Instrumentos y academia de música",
   description:

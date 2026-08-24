@@ -3,8 +3,8 @@ import { Reveal } from "@/components/ui/Reveal";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { InstrumentsGrid } from "./InstrumentsGrid";
 
-export function Instruments() {
-  const instruments = getInstruments();
+export async function Instruments() {
+  const instruments = await getInstruments();
 
   return (
     <section id="instrumentos" className="border-t border-ink-line px-6 py-28 md:px-10">

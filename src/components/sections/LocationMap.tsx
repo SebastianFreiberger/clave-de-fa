@@ -2,8 +2,8 @@ import { getContactInfo } from "@/lib/data";
 import { Reveal } from "@/components/ui/Reveal";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
-export function LocationMap() {
-  const contact = getContactInfo();
+export async function LocationMap() {
+  const contact = await getContactInfo();
   const query = encodeURIComponent(`${contact.address}, ${contact.city}`);
   const embedSrc = `https://www.google.com/maps?q=${query}&output=embed`;
   const directionsHref = `https://www.google.com/maps/dir/?api=1&destination=${query}`;

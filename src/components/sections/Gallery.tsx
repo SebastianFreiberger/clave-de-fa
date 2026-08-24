@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { getGalleryItems } from "@/lib/data";
 import { Reveal } from "@/components/ui/Reveal";
 import { InstrumentIcon } from "@/components/ui/InstrumentIcon";
@@ -17,8 +18,9 @@ const CATEGORY_GRADIENT: Record<GalleryCategory, string> = {
   academia: "from-[#1f1a24] via-ink to-ink",
 };
 
-export function Gallery() {
-  const items = getGalleryItems();
+export async function Gallery() {
+  const items = await getGalleryItems();
+  const hasMissingPhotos = items.some((item) => !item.imageUrl);
 
   return (
     <section id="galeria" className="border-t border-ink-line px-6 py-28 md:px-10">
@@ -38,10 +40,20 @@ export function Gallery() {
               <div
                 className={`group relative h-full w-full overflow-hidden rounded-2xl border border-ink-line bg-gradient-to-br ${CATEGORY_GRADIENT[item.category]}`}
               >
-                <InstrumentIcon
-                  category={item.category}
-                  className="absolute inset-0 m-auto h-16 w-16 text-brass/40 transition-transform duration-500 group-hover:scale-110 group-hover:text-brass/70"
-                />
+                {item.imageUrl ? (
+                  <Image
+                    src={item.imageUrl}
+                    alt={item.caption}
+                    fill
+                    sizes="(min-width: 640px) 25vw, 50vw"
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <InstrumentIcon
+                    category={item.category}
+                    className="absolute inset-0 m-auto h-16 w-16 text-brass/40 transition-transform duration-500 group-hover:scale-110 group-hover:text-brass/70"
+                  />
+                )}
                 <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 to-transparent p-4 pt-10">
                   <p className="text-sm text-paper-dim">{item.caption}</p>
                 </div>
@@ -50,9 +62,11 @@ export function Gallery() {
           ))}
         </div>
 
-        <p className="mt-8 text-center text-xs text-paper-dim/70">
-          Fotos reales próximamente — este mosaico se completa con imágenes del local.
-        </p>
+        {hasMissingPhotos && (
+          <p className="mt-8 text-center text-xs text-paper-dim/70">
+            Fotos reales próximamente — subilas desde el panel de administración.
+          </p>
+        )}
       </div>
     </section>
   );

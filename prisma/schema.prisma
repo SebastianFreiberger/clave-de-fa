@@ -1,0 +1,132 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+}
+
+model User {
+  id           String   @id @default(cuid())
+  name         String
+  email        String   @unique
+  passwordHash String
+  role         Role     @default(EDITOR)
+  createdAt    DateTime @default(now())
+}
+
+enum InstrumentCategory {
+  cuerdas
+  vientos
+  percusion
+  teclados
+  audio
+}
+
+enum Currency {
+  ARS
+  USD
+}
+
+model Instrument {
+  id        String             @id @default(cuid())
+  slug      String             @unique
+  name      String
+  category  InstrumentCategory
+  tagline   String
+  priceFrom Int
+  currency  Currency           @default(ARS)
+  featured  Boolean            @default(false)
+  imageUrl  String?
+  order     Int                @default(0)
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+}
+
+enum ClassLevel {
+  Iniciacion
+  Intermedio
+  Avanzado
+}
+
+enum ClassModality {
+  Individual
+  Grupal
+}
+
+model MusicClass {
+  id         String        @id @default(cuid())
+  slug       String        @unique
+  instrument String
+  level      ClassLevel
+  modality   ClassModality
+  teacher    String
+  schedule   String
+  order      Int           @default(0)
+  createdAt  DateTime      @default(now())
+  updatedAt  DateTime      @updatedAt
+}
+
+enum GalleryCategory {
+  cuerdas
+  vientos
+  percusion
+  audio
+  academia
+}
+
+enum GallerySize {
+  small
+  medium
+  large
+}
+
+model GalleryItem {
+  id        String          @id @default(cuid())
+  slug      String          @unique
+  caption   String
+  category  GalleryCategory
+  size      GallerySize     @default(small)
+  imageUrl  String?
+  order     Int             @default(0)
+  createdAt DateTime        @default(now())
+  updatedAt DateTime        @updatedAt
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  quote     String
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BusinessHour {
+  id            String      @id @default(cuid())
+  contactInfo   ContactInfo @relation(fields: [contactInfoId], references: [id], onDelete: Cascade)
+  contactInfoId String
+  day           String
+  hours         String
+  order         Int         @default(0)
+}
+
+model ContactInfo {
+  id        String         @id @default(cuid())
+  address   String
+  city      String
+  phone     String
+  whatsapp  String
+  email     String
+  instagram String
+  hours     BusinessHour[]
+  updatedAt DateTime       @updatedAt
+}
