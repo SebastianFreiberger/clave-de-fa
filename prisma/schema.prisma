@@ -20,14 +20,7 @@ model User {
   passwordHash String
   role         Role     @default(EDITOR)
   createdAt    DateTime @default(now())
-}
-
-enum InstrumentCategory {
-  cuerdas
-  vientos
-  percusion
-  teclados
-  audio
+  sales        Sale[]
 }
 
 enum Currency {
@@ -35,19 +28,91 @@ enum Currency {
   USD
 }
 
-model Instrument {
-  id        String             @id @default(cuid())
-  slug      String             @unique
+model Category {
+  id        String    @id @default(cuid())
+  slug      String    @unique
   name      String
-  category  InstrumentCategory
-  tagline   String
-  priceFrom Int
-  currency  Currency           @default(ARS)
-  featured  Boolean            @default(false)
-  imageUrl  String?
-  order     Int                @default(0)
-  createdAt DateTime           @default(now())
-  updatedAt DateTime           @updatedAt
+  order     Int       @default(0)
+  products  Product[]
+  createdAt DateTime  @default(now())
+}
+
+model Brand {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  name      String
+  order     Int       @default(0)
+  products  Product[]
+  createdAt DateTime  @default(now())
+}
+
+model Product {
+  id         String     @id @default(cuid())
+  slug       String     @unique
+  name       String
+  tagline    String
+  categoryId String
+  category   Category   @relation(fields: [categoryId], references: [id])
+  brandId    String?
+  brand      Brand?     @relation(fields: [brandId], references: [id])
+  costPrice  Int        @default(0)
+  price      Int
+  currency   Currency   @default(ARS)
+  stock      Int        @default(0)
+  imageUrl   String?
+  published  Boolean    @default(true)
+  featured   Boolean    @default(false)
+  order      Int        @default(0)
+  saleItems  SaleItem[]
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+}
+
+enum PaymentMethod {
+  efectivo
+  tarjeta
+  transferencia
+  otro
+}
+
+model Sale {
+  id            String        @id @default(cuid())
+  total         Int
+  paymentMethod PaymentMethod @default(efectivo)
+  notes         String?
+  createdById   String?
+  createdBy     User?         @relation(fields: [createdById], references: [id])
+  items         SaleItem[]
+  transaction   Transaction?
+  createdAt     DateTime      @default(now())
+}
+
+model SaleItem {
+  id        String  @id @default(cuid())
+  saleId    String
+  sale      Sale    @relation(fields: [saleId], references: [id], onDelete: Cascade)
+  productId String
+  product   Product @relation(fields: [productId], references: [id])
+  quantity  Int
+  unitPrice Int
+  subtotal  Int
+}
+
+enum TransactionType {
+  INCOME
+  EXPENSE
+}
+
+model Transaction {
+  id          String          @id @default(cuid())
+  type        TransactionType
+  category    String
+  amount      Int
+  description String
+  date        DateTime        @default(now())
+  saleId      String?         @unique
+  sale        Sale?           @relation(fields: [saleId], references: [id])
+  createdAt   DateTime        @default(now())
 }
 
 enum ClassLevel {

@@ -1,16 +1,20 @@
-export type InstrumentCategory =
-  | "cuerdas"
-  | "vientos"
-  | "percusion"
-  | "teclados"
-  | "audio";
-
-export interface Instrument {
+export interface ProductCategory {
   slug: string;
   name: string;
-  category: InstrumentCategory;
+}
+
+export interface ProductBrand {
+  slug: string;
+  name: string;
+}
+
+export interface Product {
+  slug: string;
+  name: string;
+  category: ProductCategory;
+  brand: ProductBrand | null;
   tagline: string;
-  priceFrom: number;
+  price: number;
   currency: "ARS" | "USD";
   featured: boolean;
   imageUrl?: string;

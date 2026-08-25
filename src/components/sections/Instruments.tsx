@@ -1,10 +1,13 @@
-import { getInstruments } from "@/lib/data";
+import { getProducts, getProductCategories } from "@/lib/data";
 import { Reveal } from "@/components/ui/Reveal";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 import { InstrumentsGrid } from "./InstrumentsGrid";
 
 export async function Instruments() {
-  const instruments = await getInstruments();
+  const [products, categories] = await Promise.all([
+    getProducts(),
+    getProductCategories(),
+  ]);
 
   return (
     <section id="instrumentos" className="border-t border-ink-line px-6 py-28 md:px-10">
@@ -27,7 +30,7 @@ export async function Instruments() {
         </Reveal>
 
         <Reveal delay={0.1} className="mt-16">
-          <InstrumentsGrid instruments={instruments} />
+          <InstrumentsGrid products={products} categories={categories} />
         </Reveal>
 
         <div className="mt-14 flex justify-center">

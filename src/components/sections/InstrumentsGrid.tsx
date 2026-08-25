@@ -3,23 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { motion } from "motion/react";
-import type { Instrument, InstrumentCategory } from "@/types/content";
-
-const CATEGORY_LABEL: Record<InstrumentCategory, string> = {
-  cuerdas: "Cuerdas",
-  vientos: "Vientos",
-  percusion: "Percusión",
-  teclados: "Teclados",
-  audio: "Audio",
-};
-
-const CATEGORIES: InstrumentCategory[] = [
-  "cuerdas",
-  "vientos",
-  "percusion",
-  "teclados",
-  "audio",
-];
+import type { Product, ProductCategory } from "@/types/content";
 
 function formatPrice(price: number, currency: string) {
   return new Intl.NumberFormat("es-AR", {
@@ -29,13 +13,19 @@ function formatPrice(price: number, currency: string) {
   }).format(price);
 }
 
-export function InstrumentsGrid({ instruments }: { instruments: Instrument[] }) {
-  const [active, setActive] = useState<InstrumentCategory | "todos">("todos");
+export function InstrumentsGrid({
+  products,
+  categories,
+}: {
+  products: Product[];
+  categories: ProductCategory[];
+}) {
+  const [active, setActive] = useState<string>("todos");
 
   const visible =
     active === "todos"
-      ? instruments
-      : instruments.filter((i) => i.category === active);
+      ? products
+      : products.filter((i) => i.category.slug === active);
 
   return (
     <div>
@@ -50,17 +40,17 @@ export function InstrumentsGrid({ instruments }: { instruments: Instrument[] }) 
         >
           Todos
         </button>
-        {CATEGORIES.map((cat) => (
+        {categories.map((cat) => (
           <button
-            key={cat}
-            onClick={() => setActive(cat)}
+            key={cat.slug}
+            onClick={() => setActive(cat.slug)}
             className={`rounded-full px-4 py-2 text-sm tracking-wide transition-colors ${
-              active === cat
+              active === cat.slug
                 ? "bg-brass text-ink"
                 : "border border-ink-line text-paper-dim hover:text-brass"
             }`}
           >
-            {CATEGORY_LABEL[cat]}
+            {cat.name}
           </button>
         ))}
       </div>
@@ -88,7 +78,8 @@ export function InstrumentsGrid({ instruments }: { instruments: Instrument[] }) 
                 </div>
               )}
               <span className="text-xs tracking-[0.2em] text-brass uppercase">
-                {CATEGORY_LABEL[item.category]}
+                {item.category.name}
+                {item.brand && ` · ${item.brand.name}`}
               </span>
               <h3 className="mt-4 font-display text-2xl text-paper">
                 {item.name}
@@ -96,7 +87,7 @@ export function InstrumentsGrid({ instruments }: { instruments: Instrument[] }) 
               <p className="mt-2 text-sm text-paper-dim">{item.tagline}</p>
             </div>
             <p className="mt-8 font-sans text-lg text-paper">
-              Desde {formatPrice(item.priceFrom, item.currency)}
+              {formatPrice(item.price, item.currency)}
             </p>
           </motion.div>
         ))}

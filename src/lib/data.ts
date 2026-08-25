@@ -1,6 +1,6 @@
 import { prisma } from "@/lib/prisma";
 import type {
-  Instrument,
+  Product,
   MusicClass,
   ContactInfo,
   GalleryItem,
@@ -13,23 +13,34 @@ const LEVEL_LABEL: Record<string, MusicClass["level"]> = {
   Avanzado: "Avanzado",
 };
 
-export async function getInstruments(): Promise<Instrument[]> {
-  const rows = await prisma.instrument.findMany({ orderBy: { order: "asc" } });
+export async function getProducts(): Promise<Product[]> {
+  const rows = await prisma.product.findMany({
+    where: { published: true },
+    include: { category: true, brand: true },
+    orderBy: { order: "asc" },
+  });
+
   return rows.map((r) => ({
     slug: r.slug,
     name: r.name,
-    category: r.category,
+    category: { slug: r.category.slug, name: r.category.name },
+    brand: r.brand ? { slug: r.brand.slug, name: r.brand.name } : null,
     tagline: r.tagline,
-    priceFrom: r.priceFrom,
+    price: r.price,
     currency: r.currency,
     featured: r.featured,
     imageUrl: r.imageUrl ?? undefined,
   }));
 }
 
-export async function getFeaturedInstruments(): Promise<Instrument[]> {
-  const items = await getInstruments();
+export async function getFeaturedProducts(): Promise<Product[]> {
+  const items = await getProducts();
   return items.filter((i) => i.featured);
+}
+
+export async function getProductCategories() {
+  const rows = await prisma.category.findMany({ orderBy: { order: "asc" } });
+  return rows.map((r) => ({ slug: r.slug, name: r.name }));
 }
 
 export async function getClasses(): Promise<MusicClass[]> {

@@ -1,13 +1,35 @@
 import Link from "next/link";
 import { auth, signOut } from "@/lib/auth";
 
-const NAV = [
-  { href: "/admin", label: "Resumen" },
-  { href: "/admin/instrumentos", label: "Instrumentos" },
-  { href: "/admin/clases", label: "Clases" },
-  { href: "/admin/galeria", label: "Galería" },
-  { href: "/admin/testimonios", label: "Testimonios" },
-  { href: "/admin/contacto", label: "Contacto y horarios" },
+const NAV_GROUPS: { label: string | null; items: { href: string; label: string }[] }[] = [
+  {
+    label: null,
+    items: [{ href: "/admin", label: "Resumen" }],
+  },
+  {
+    label: "Catálogo",
+    items: [
+      { href: "/admin/productos", label: "Productos" },
+      { href: "/admin/categorias", label: "Categorías" },
+      { href: "/admin/marcas", label: "Marcas" },
+    ],
+  },
+  {
+    label: "Negocio",
+    items: [
+      { href: "/admin/ventas", label: "Ventas" },
+      { href: "/admin/movimientos", label: "Ingresos y egresos" },
+    ],
+  },
+  {
+    label: "Contenido",
+    items: [
+      { href: "/admin/clases", label: "Clases" },
+      { href: "/admin/galeria", label: "Galería" },
+      { href: "/admin/testimonios", label: "Testimonios" },
+      { href: "/admin/contacto", label: "Contacto y horarios" },
+    ],
+  },
 ];
 
 export async function AdminShell({ children }: { children: React.ReactNode }) {
@@ -16,38 +38,55 @@ export async function AdminShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-ink text-paper">
       <div className="flex min-h-screen">
-        <aside className="hidden w-64 shrink-0 border-r border-ink-line bg-ink-soft p-6 md:block">
-          <Link href="/admin" className="font-display text-xl text-paper">
-            Clave <span className="text-brass italic">de Fa</span>
+        <aside className="hidden w-64 shrink-0 overflow-y-auto border-r border-ink-line bg-ink-soft p-6 md:block">
+          <Link href="/admin" className="flex items-baseline gap-2">
+            <span className="font-display text-lg text-paper">Clave de Fa</span>
+            <span className="rounded border border-ink-line px-1.5 py-0.5 text-[10px] tracking-widest text-paper-dim uppercase">
+              Admin
+            </span>
           </Link>
-          <p className="mt-1 text-xs tracking-widest text-paper-dim uppercase">
-            Panel de administración
-          </p>
 
-          <nav className="mt-10 flex flex-col gap-1">
-            {NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="rounded-lg px-3 py-2 text-sm text-paper-dim transition-colors hover:bg-ink hover:text-paper"
-              >
-                {item.label}
-              </Link>
+          <nav className="mt-8 flex flex-col gap-5">
+            {NAV_GROUPS.map((group, i) => (
+              <div key={i}>
+                {group.label && (
+                  <p className="px-3 pb-1 text-[11px] tracking-widest text-paper-dim/70 uppercase">
+                    {group.label}
+                  </p>
+                )}
+                <div className="flex flex-col gap-1">
+                  {group.items.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className="rounded-lg px-3 py-2 text-sm text-paper-dim transition-colors hover:bg-ink hover:text-paper"
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </div>
+              </div>
             ))}
+
             {session?.user.role === "ADMIN" && (
-              <Link
-                href="/admin/usuarios"
-                className="rounded-lg px-3 py-2 text-sm text-paper-dim transition-colors hover:bg-ink hover:text-paper"
-              >
-                Usuarios
-              </Link>
+              <div>
+                <p className="px-3 pb-1 text-[11px] tracking-widest text-paper-dim/70 uppercase">
+                  Cuenta
+                </p>
+                <Link
+                  href="/admin/usuarios"
+                  className="rounded-lg px-3 py-2 text-sm text-paper-dim transition-colors hover:bg-ink hover:text-paper"
+                >
+                  Usuarios
+                </Link>
+              </div>
             )}
           </nav>
 
           <Link
             href="/"
             target="_blank"
-            className="mt-10 block text-xs text-paper-dim underline decoration-ink-line underline-offset-4 hover:text-brass"
+            className="mt-8 block text-xs text-paper-dim underline decoration-ink-line underline-offset-4 hover:text-brass"
           >
             Ver sitio público
           </Link>
