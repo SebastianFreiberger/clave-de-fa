@@ -1,9 +1,5 @@
 import type { Metadata } from "next";
 import { Fraunces, Space_Grotesk } from "next/font/google";
-import { Header } from "@/components/layout/Header";
-import { Footer } from "@/components/layout/Footer";
-import { SmoothScroll } from "@/components/providers/SmoothScroll";
-import { BackToTop } from "@/components/ui/BackToTop";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -33,13 +29,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${fraunces.variable} ${spaceGrotesk.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-ink text-paper">
-        <div className="grain" />
-        <SmoothScroll>
-          <Header />
-          <main className="flex-1">{children}</main>
-          <Footer />
-          <BackToTop />
-        </SmoothScroll>
+        {children}
       </body>
     </html>
   );

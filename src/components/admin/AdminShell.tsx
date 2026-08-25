@@ -51,12 +51,28 @@ export async function AdminShell({ children }: { children: React.ReactNode }) {
           >
             Ver sitio público
           </Link>
+
+          <form
+            action={async () => {
+              "use server";
+              await signOut({ redirectTo: "/admin/login" });
+            }}
+            className="mt-4"
+          >
+            <button
+              type="submit"
+              className="w-full rounded-full border border-ink-line px-4 py-2 text-sm text-paper transition-colors hover:border-brass hover:text-brass"
+            >
+              Cerrar sesión
+            </button>
+          </form>
         </aside>
 
         <div className="flex-1">
-          <header className="flex items-center justify-between border-b border-ink-line px-6 py-4 md:px-10">
+          <header className="flex flex-wrap items-center justify-between gap-3 border-b border-ink-line px-6 py-4 md:px-10">
             <p className="text-sm text-paper-dim">
-              {session?.user.name} · {session?.user.email}
+              {session?.user.name}
+              <span className="hidden sm:inline"> · {session?.user.email}</span>
               <span className="ml-2 rounded-full border border-brass/40 px-2 py-0.5 text-xs text-brass">
                 {session?.user.role}
               </span>
@@ -69,7 +85,7 @@ export async function AdminShell({ children }: { children: React.ReactNode }) {
             >
               <button
                 type="submit"
-                className="text-sm text-paper-dim hover:text-brass"
+                className="rounded-full border border-ink-line px-4 py-2 text-sm text-paper transition-colors hover:border-brass hover:text-brass"
               >
                 Cerrar sesión
               </button>
