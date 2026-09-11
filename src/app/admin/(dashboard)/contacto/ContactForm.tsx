@@ -11,6 +11,7 @@ interface ContactFormValues {
   whatsapp: string;
   email: string;
   instagram: string;
+  facebook: string;
   hours: { day: string; hours: string }[];
 }
 
@@ -75,11 +76,20 @@ export function ContactForm({
             id="instagram"
             name="instagram"
             required
-            placeholder="@clavedefa"
+            placeholder="https://instagram.com/clavedefa"
             defaultValue={defaultValues.instagram}
           />
         </FormField>
       </div>
+
+      <FormField label="Facebook (opcional)" htmlFor="facebook">
+        <TextInput
+          id="facebook"
+          name="facebook"
+          placeholder="https://facebook.com/clavedefa"
+          defaultValue={defaultValues.facebook}
+        />
+      </FormField>
 
       <div>
         <p className="text-sm text-paper-dim">Horarios</p>

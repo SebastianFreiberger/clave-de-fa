@@ -156,6 +156,7 @@ async function main() {
         whatsapp: contact.whatsapp,
         email: contact.email,
         instagram: contact.instagram,
+        facebook: contact.facebook,
         hours: {
           create: contact.hours.map((h, i) => ({
             day: h.day,

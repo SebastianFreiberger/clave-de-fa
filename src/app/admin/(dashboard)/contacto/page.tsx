@@ -18,15 +18,18 @@ export default async function ContactAdminPage() {
       <ContactForm
         action={updateContact}
         defaultValues={
-          contact ?? {
-            address: "",
-            city: "",
-            phone: "",
-            whatsapp: "",
-            email: "",
-            instagram: "",
-            hours: [],
-          }
+          contact
+            ? { ...contact, facebook: contact.facebook ?? "" }
+            : {
+                address: "",
+                city: "",
+                phone: "",
+                whatsapp: "",
+                email: "",
+                instagram: "",
+                facebook: "",
+                hours: [],
+              }
         }
       />
     </div>

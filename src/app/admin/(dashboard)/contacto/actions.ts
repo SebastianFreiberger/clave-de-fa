@@ -12,6 +12,7 @@ const schema = z.object({
   whatsapp: z.string().min(1, "Requerido"),
   email: z.string().email("Email inválido"),
   instagram: z.string().min(1, "Requerido"),
+  facebook: z.string().optional(),
 });
 
 export async function updateContact(formData: FormData) {
@@ -24,7 +25,10 @@ export async function updateContact(formData: FormData) {
     whatsapp: formData.get("whatsapp"),
     email: formData.get("email"),
     instagram: formData.get("instagram"),
+    facebook: formData.get("facebook"),
   });
+
+  const facebook = data.facebook?.trim() || null;
 
   const days = formData.getAll("hourDay") as string[];
   const hours = formData.getAll("hourRange") as string[];
@@ -39,6 +43,7 @@ export async function updateContact(formData: FormData) {
       where: { id: existing.id },
       data: {
         ...data,
+        facebook,
         hours: {
           deleteMany: {},
           create: hourRows.map((row, i) => ({ ...row, order: i })),
@@ -49,6 +54,7 @@ export async function updateContact(formData: FormData) {
     await prisma.contactInfo.create({
       data: {
         ...data,
+        facebook,
         hours: { create: hourRows.map((row, i) => ({ ...row, order: i })) },
       },
     });

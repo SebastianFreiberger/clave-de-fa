@@ -36,6 +36,7 @@ export interface ContactInfo {
   whatsapp: string;
   email: string;
   instagram: string;
+  facebook?: string;
   hours: { day: string; hours: string }[];
 }
 

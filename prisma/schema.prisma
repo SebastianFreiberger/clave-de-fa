@@ -12,6 +12,7 @@ datasource db {
 enum Role {
   ADMIN
   EDITOR
+  CUSTOMER
 }
 
 model User {
@@ -193,6 +194,7 @@ model ContactInfo {
   whatsapp  String
   email     String
   instagram String
+  facebook  String?
   hours     BusinessHour[]
   updatedAt DateTime       @updatedAt
 }

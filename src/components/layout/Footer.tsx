@@ -1,4 +1,6 @@
 import { getContactInfo } from "@/lib/data";
+import { InstagramIcon } from "@/components/ui/InstagramIcon";
+import { FacebookIcon } from "@/components/ui/FacebookIcon";
 
 export async function Footer() {
   const contact = await getContactInfo();
@@ -32,7 +34,30 @@ export async function Footer() {
 
       <div className="mx-auto mt-12 flex max-w-6xl flex-col-reverse gap-4 border-t border-ink-line pt-6 text-xs text-paper-dim md:flex-row md:items-center md:justify-between">
         <p>© {new Date().getFullYear()} Clave de Fa. Todos los derechos reservados.</p>
-        <p>{contact.instagram}</p>
+        <div className="flex items-center gap-4">
+          {contact.instagram && (
+            <a
+              href={contact.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="text-paper-dim transition-colors hover:text-brass"
+            >
+              <InstagramIcon className="h-5 w-5" />
+            </a>
+          )}
+          {contact.facebook && (
+            <a
+              href={contact.facebook}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Facebook"
+              className="text-paper-dim transition-colors hover:text-brass"
+            >
+              <FacebookIcon className="h-5 w-5" />
+            </a>
+          )}
+        </div>
       </div>
     </footer>
   );

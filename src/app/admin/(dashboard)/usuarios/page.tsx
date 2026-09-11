@@ -11,7 +11,10 @@ export default async function UsersAdminPage() {
     redirect("/admin");
   }
 
-  const users = await prisma.user.findMany({ orderBy: { createdAt: "asc" } });
+  const users = await prisma.user.findMany({
+    where: { role: { in: ["ADMIN", "EDITOR"] } },
+    orderBy: { createdAt: "asc" },
+  });
 
   return (
     <div>

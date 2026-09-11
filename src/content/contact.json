@@ -4,7 +4,8 @@
   "phone": "+54 9 11 0000-0000",
   "whatsapp": "5491100000000",
   "email": "hola@clavedefa.com.ar",
-  "instagram": "@clavedefa",
+  "instagram": "https://instagram.com/clavedefa",
+  "facebook": "https://facebook.com/clavedefa",
   "hours": [
     { "day": "Lunes a viernes", "hours": "10:00 – 20:00" },
     { "day": "Sábados", "hours": "10:00 – 14:00" }

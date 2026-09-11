@@ -68,6 +68,7 @@ export async function getContactInfo(): Promise<ContactInfo> {
       whatsapp: "",
       email: "",
       instagram: "",
+      facebook: undefined,
       hours: [],
     };
   }
@@ -79,6 +80,7 @@ export async function getContactInfo(): Promise<ContactInfo> {
     whatsapp: row.whatsapp,
     email: row.email,
     instagram: row.instagram,
+    facebook: row.facebook ?? undefined,
     hours: row.hours.map((h) => ({ day: h.day, hours: h.hours })),
   };
 }
