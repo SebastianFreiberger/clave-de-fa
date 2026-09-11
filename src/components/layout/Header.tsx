@@ -66,13 +66,6 @@ export function Header() {
               Ingresar
             </Link>
           )}
-
-          <a
-            href="#contacto"
-            className="rounded-full border border-ink-line px-5 py-2 text-sm text-paper transition-colors hover:border-brass hover:text-brass"
-          >
-            Visitanos
-          </a>
         </div>
 
         <button
