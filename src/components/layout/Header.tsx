@@ -70,11 +70,20 @@ export function Header() {
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="flex flex-col gap-1.5 md:hidden"
-          aria-label="Abrir menú"
+          className="relative flex h-4 w-6 items-center justify-center md:hidden"
+          aria-label={open ? "Cerrar menú" : "Abrir menú"}
+          aria-expanded={open}
         >
-          <span className="h-px w-6 bg-paper" />
-          <span className="h-px w-6 bg-paper" />
+          <motion.span
+            className="absolute h-px w-6 bg-paper"
+            animate={open ? { rotate: 45, y: 0 } : { rotate: 0, y: -4 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+          />
+          <motion.span
+            className="absolute h-px w-6 bg-paper"
+            animate={open ? { rotate: -45, y: 0 } : { rotate: 0, y: 4 }}
+            transition={{ duration: 0.25, ease: "easeInOut" }}
+          />
         </button>
       </div>
 
